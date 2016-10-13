@@ -31,7 +31,7 @@ item_biscuits = {
 
     "name": "a pack of biscuits",
 
-    "description": "A pack of biscuits."
+    "description": "A delicious pack of biscuits."
 }
 
 item_pen = {
