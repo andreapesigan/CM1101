@@ -180,6 +180,7 @@ def menu(exits):
             return player_input
         else:
             print('You cannot go there.')
+        print()        
 
 
 
