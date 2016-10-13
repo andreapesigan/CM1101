@@ -223,7 +223,11 @@ def execute_go(direction):
     (and prints the name of the room into which the player is
     moving). Otherwise, it prints "You cannot go there."
     """
-    pass
+    global current_room
+    if is_valid_exit(current_room['exits'], direction):
+        current_room = move(current_room['exits'], direction)
+    else:
+        print('You cannot go there.')
 
 
 def execute_take(item_id):
@@ -232,7 +236,14 @@ def execute_take(item_id):
     there is no such item in the room, this function prints
     "You cannot take that."
     """
-    pass
+    item_in_room = False
+    for item in current_room["items"]:
+        if item['id'] == item_id:
+            item_in_room = True
+            inventory.append(item)
+            current_room['items'].remove(item)
+    if not item_in_room:
+        print("You cannot take that.")
     
 
 def execute_drop(item_id):
@@ -240,7 +251,15 @@ def execute_drop(item_id):
     player's inventory to list of items in the current room. However, if there is
     no such item in the inventory, this function prints "You cannot drop that."
     """
-    pass
+    item_in_inventory = False
+    for item in inventory:
+        if item['id'] == item_id:
+            item_in_inventory = True
+            inventory.remove(item)
+            current_room['items'].append(item)
+    if not item_in_inventory:
+        print("You cannot drop that.")
+    
     
 
 def execute_command(command):
@@ -250,7 +269,7 @@ def execute_command(command):
     execute_take, or execute_drop, supplying the second word as the argument.
 
     """
-
+    
     if 0 == len(command):
         return
 
@@ -313,7 +332,7 @@ def move(exits, direction):
     # Next room to go to
     return rooms[exits[direction]]
 
-'''
+
 # This is the entry point of our program
 def main():
 
@@ -335,6 +354,6 @@ def main():
 # '__main__' is the name of the scope in which top-level code executes.
 # See https://docs.python.org/3.4/library/__main__.html for explanation
 if __name__ == "__main__":
-    main()'''
+    main()
 
 
