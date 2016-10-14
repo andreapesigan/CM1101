@@ -42,7 +42,7 @@ def remove_spaces(text):
     for ch in text:        
         if text[-1] == ' ':
             text = text[:-1]
-    return text    
+    return text  
 
 
 
